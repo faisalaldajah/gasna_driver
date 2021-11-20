@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gasna_driver/screens/vehicleinfo.dart';
+import 'package:gasna_driver/screens/StartPage.dart';
 import 'package:gasna_driver/widgets/GradientButton.dart';
 import 'package:gasna_driver/widgets/ProgressDialog.dart';
 import '../globalvariabels.dart';
@@ -17,20 +17,6 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-
-  void showSnackBar(String title) {
-    final snackbar = SnackBar(
-      content: Text(
-        title,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 15),
-      ),
-    );
-    // ignore: deprecated_member_use
-    scaffoldKey.currentState.showSnackBar(snackbar);
-  }
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   var fullNameController = TextEditingController();
@@ -40,7 +26,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
   var emailController = TextEditingController();
 
   var passwordController = TextEditingController();
-
+  var agentController = TextEditingController();
+  var placeController = TextEditingController();
+  var governorateController = TextEditingController();
   void registerUser() async {
     //show please wait dialog
     showDialog(
@@ -68,21 +56,38 @@ class _RegistrationPageState extends State<RegistrationPage> {
     if (user != null) {
       DatabaseReference newUserRef =
           FirebaseDatabase.instance.reference().child('drivers/${user.uid}');
+      DatabaseReference checkDriverRef = FirebaseDatabase.instance
+          .reference()
+          .child('approveDriver/${user.uid}');
 
       //Prepare data to be saved on users table
       Map userMap = {
         'fullname': fullNameController.text,
         'email': emailController.text,
         'phone': phoneController.text,
-        'driversIsAvailable': false
+        'driversIsAvailable': false,
+        'agentName': agentController.text,
+        'place': placeController.text,
+        'approveDriver': 'false',
+        'governorate': governorateController.text,
+        'currentAmount': '0',
+        'amount': {
+          'amount': '0',
+          'status': 'wait',
+          'transNumber': '0',
+        }
       };
-
+      Map checkDriverMap = {
+        'isApproveDriver': 'false',
+      };
       newUserRef.set(userMap);
+      checkDriverRef.set(checkDriverMap);
 
       currentFirebaseUser = user;
 
       //Take the user to the mainPage
-      Navigator.pushNamed(context, VehicleInfoPage.id);
+      Navigator.pushNamedAndRemoveUntil(
+          context, StartPage.id, (route) => false);
     }
   }
 
@@ -99,9 +104,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
               children: <Widget>[
                 Image(
                   alignment: Alignment.center,
-                  height: 280.0,
-                  width: 280.0,
-                  image: AssetImage('images/logo.png'),
+                  height: 250.0,
+                  width: 250.0,
+                  image: AssetImage('images/gasna.png'),
                 ),
                 Padding(
                   padding: EdgeInsets.all(20.0),
@@ -167,6 +172,55 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         obscureText: true,
                         decoration: InputDecoration(
                             labelText: 'رقم السري',
+                            labelStyle: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10.0)),
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      // Password
+                      TextField(
+                        controller: agentController,
+                        decoration: InputDecoration(
+                          labelText: 'اسم الوكالة',
+                          labelStyle: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                          hintStyle:
+                              TextStyle(color: Colors.grey, fontSize: 10.0),
+                        ),
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      // Password
+                      TextField(
+                        controller: governorateController,
+                        decoration: InputDecoration(
+                            labelText: 'المحافظة',
+                            labelStyle: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10.0)),
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      // Password
+                      TextField(
+                        controller: placeController,
+                        decoration: InputDecoration(
+                            labelText: 'مكان التوزيع',
                             labelStyle: TextStyle(
                               fontSize: 14.0,
                             ),

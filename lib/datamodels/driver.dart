@@ -5,19 +5,25 @@ class Driver {
   String email;
   String phone;
   String id;
-  String carModel;
-  String carColor;
-  String vehicleNumber;
-  bool driversIsAvailable;
+  String governorate;
+  String place;
+  String agentName;
+  var driversIsAvailable;
+  String amount;
+  String status;
+  String currentAmount;
   Driver({
     this.fullName,
     this.email,
     this.phone,
     this.id,
-    this.carModel,
-    this.carColor,
-    this.vehicleNumber,
+    this.governorate,
+    this.place,
+    this.agentName,
     this.driversIsAvailable,
+    this.amount,
+    this.currentAmount,
+    this.status,
   });
 
   Driver.fromSnapshot(DataSnapshot snapshot) {
@@ -25,9 +31,12 @@ class Driver {
     phone = snapshot.value['phone'];
     email = snapshot.value['email'];
     fullName = snapshot.value['fullname'];
-    carModel = snapshot.value['vehicle_details']['car_model'];
-    carColor = snapshot.value['vehicle_details']['car_color'];
-    vehicleNumber = snapshot.value['vehicle_details']['vehicle_number'];
+    place = snapshot.value['place'];
+    agentName = snapshot.value['agentName'];
     driversIsAvailable = snapshot.value['driversIsAvailable'];
+    governorate = snapshot.value['governorate'];
+    amount = snapshot.value['amount']['amount'];
+    status = snapshot.value['amount']['status'];
+    currentAmount = snapshot.value['currentAmount'];
   }
 }

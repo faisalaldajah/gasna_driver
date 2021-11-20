@@ -27,7 +27,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.1
   firebase_core: ^0.7.0
   firebase_auth: ^0.20.0+1
   firebase_database: ^6.0.0
@@ -86,6 +86,3 @@ flutter:
     - family: JF-Flat-regular
       fonts:
         - asset: fonts/JF-Flat-regular.otf
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

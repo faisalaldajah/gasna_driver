@@ -4,11 +4,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gasna_driver/brand_colors.dart';
+import 'package:gasna_driver/screens/StartPage.dart';
 import 'package:gasna_driver/screens/registration.dart';
 import 'package:gasna_driver/widgets/GradientButton.dart';
 import 'package:gasna_driver/widgets/ProgressDialog.dart';
-import 'package:intl/intl.dart';
-import 'mainpage.dart';
 
 class LoginPage extends StatefulWidget {
   static const String id = 'login';
@@ -67,8 +66,7 @@ class _LoginPageState extends State<LoginPage> {
           FirebaseDatabase.instance.reference().child('drivers/${user.uid}');
       userRef.once().then((DataSnapshot snapshot) {
         if (snapshot.value != null) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, MainPage.id, (route) => false);
+          Navigator.pushNamedAndRemoveUntil(context, StartPage.id, (route) => false);
         }
       });
     }

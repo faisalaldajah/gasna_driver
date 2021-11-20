@@ -119,17 +119,14 @@ class VehicleInfoPage extends StatelessWidget {
                           showSnackBar('Please provide a valid car model');
                           return;
                         }
-
                         if (carColorController.text.length < 3) {
                           showSnackBar('Please provide a valid car color');
                           return;
                         }
-
                         if (vehicleNumberController.text.length < 3) {
                           showSnackBar('Please provide a valid vehicle number');
                           return;
                         }
-
                         updateProfile(context);
                       },
                     )

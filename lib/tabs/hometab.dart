@@ -31,11 +31,7 @@ class _HomeTabState extends State<HomeTab> {
     mapController.animateCamera(CameraUpdate.newLatLng(pos));
   }
 
-  @override
-  void initState() {
-    super.initState();
-    getCurrentDriverInfo(context);
-  }
+  
 
   @override
   Widget build(BuildContext context) {

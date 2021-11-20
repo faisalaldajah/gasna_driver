@@ -3,15 +3,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gasna_driver/dataprovider.dart';
 import 'package:gasna_driver/globalvariabels.dart';
+import 'package:gasna_driver/screens/StartPage.dart';
 import 'package:gasna_driver/screens/login.dart';
 import 'package:gasna_driver/screens/mainpage.dart';
 import 'package:gasna_driver/screens/registration.dart';
-import 'package:gasna_driver/screens/vehicleinfo.dart';
 import 'package:provider/provider.dart';
 
-//  
-Future<void> main() async {
-  
+
+Future<void> main() async {  
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   // ignore: await_only_futures
@@ -33,11 +32,11 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialRoute:
-            (currentFirebaseUser == null) ? LoginPage.id: MainPage.id,
+            (currentFirebaseUser == null) ? LoginPage.id: StartPage.id,
         routes: {
           MainPage.id: (context) => MainPage(),
           RegistrationPage.id: (context) => RegistrationPage(),
-          VehicleInfoPage.id: (context) => VehicleInfoPage(),
+          StartPage.id: (context) => StartPage(),
           LoginPage.id: (context) => LoginPage(),
         },
       ),

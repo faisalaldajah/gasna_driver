@@ -263,7 +263,7 @@ class _NewTripPageState extends State<NewTripPage> {
     rideRef.child('driver_name').set(currentDriverInfo.fullName);
     rideRef
         .child('car_details')
-        .set('${currentDriverInfo.carColor} - ${currentDriverInfo.carModel}');
+        .set('${currentDriverInfo.place} - ${currentDriverInfo.agentName}');
     rideRef.child('driver_phone').set(currentDriverInfo.phone);
     rideRef.child('driver_id').set(currentDriverInfo.id);
 
@@ -464,7 +464,6 @@ class _NewTripPageState extends State<NewTripPage> {
     });
   }
 
-  //TODO
   void endTrip() async {
     HelperMethods.showProgressDialog(context);
 
