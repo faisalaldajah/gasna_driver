@@ -12,6 +12,8 @@ class Driver {
   String amount;
   String status;
   String currentAmount;
+  String driverType;
+
   Driver({
     this.fullName,
     this.email,
@@ -24,6 +26,7 @@ class Driver {
     this.amount,
     this.currentAmount,
     this.status,
+    this.driverType,
   });
 
   Driver.fromSnapshot(DataSnapshot snapshot) {
@@ -38,5 +41,6 @@ class Driver {
     amount = snapshot.value['amount']['amount'];
     status = snapshot.value['amount']['status'];
     currentAmount = snapshot.value['currentAmount'];
+    driverType = snapshot.value['driverType'];
   }
 }

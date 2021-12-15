@@ -1,18 +1,14 @@
 import 'dart:async';
-
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_geofire/flutter_geofire.dart';
-import 'package:gasna_driver/helpers/helpermethods.dart';
 import 'package:gasna_driver/screens/mainpage.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'brand_colors.dart';
 import 'datamodels/driver.dart';
-import 'helpers/pushnotificationservice.dart';
 
 User currentFirebaseUser;
 
@@ -61,13 +57,6 @@ void getCurrentDriverInfo(context) async {
       Navigator.pushNamedAndRemoveUntil(context, MainPage.id, (route) => false);
     }
   });
-
-  PushNotificationService pushNotificationService = PushNotificationService();
-
-  pushNotificationService.initialize(context);
-  pushNotificationService.getToken();
-
-  HelperMethods.getHistoryInfo(context);
 }
 
 // ignore: unused_local_variable
@@ -77,7 +66,8 @@ DatabaseReference tripRequestRef = FirebaseDatabase.instance
 
 // ignore: non_constant_identifier_names
 void GoOnline() {
-  Geofire.initialize('driversAvailable');
+  Geofire.initialize(
+      'driversAvailable/${currentDriverInfo.governorate}/${currentDriverInfo.driverType}');
   Geofire.setLocation(currentFirebaseUser.uid, currentPosition.latitude,
       currentPosition.longitude);
 

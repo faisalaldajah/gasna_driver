@@ -20,8 +20,8 @@ class _GradientButtonState extends State<GradientButton> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               BrandColors.colorAccent,
               BrandColors.colorAccent1,

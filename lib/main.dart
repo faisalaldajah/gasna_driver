@@ -9,12 +9,11 @@ import 'package:gasna_driver/screens/mainpage.dart';
 import 'package:gasna_driver/screens/registration.dart';
 import 'package:provider/provider.dart';
 
-
-Future<void> main() async {  
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   // ignore: await_only_futures
-  currentFirebaseUser = await FirebaseAuth.instance.currentUser;  
+  currentFirebaseUser = await FirebaseAuth.instance.currentUser;
   runApp(MyApp());
 }
 
@@ -32,7 +31,9 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialRoute:
-            (currentFirebaseUser == null) ? LoginPage.id: StartPage.id,
+            (currentFirebaseUser == null) ? LoginPage.id : StartPage.id,
+        //
+        //RegistrationPage.id,
         routes: {
           MainPage.id: (context) => MainPage(),
           RegistrationPage.id: (context) => RegistrationPage(),

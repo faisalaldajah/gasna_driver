@@ -40,7 +40,7 @@ dependencies:
   flutter_polyline_points: ^0.2.1
   font_awesome_flutter: ^8.8.1
   animated_text_kit: ^2.1.0
-  flutter_geofire: ^1.0.3
+  flutter_geofire: ^2.0.1
   firebase_messaging: ^6.0.16
   assets_audio_player: ^2.0.1+7
   toast: ^0.1.5
@@ -48,8 +48,10 @@ dependencies:
   intl: ^0.16.1
   permission_handler: ^5.0.0+hotfix.10
   url_launcher: ^6.0.4
+  image_picker:
+  firebase_storage:
 
-dev_dependencies:
+dev_dependencies: 
   flutter_test:
     sdk: flutter
 

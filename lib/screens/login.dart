@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gasna_driver/brand_colors.dart';
 import 'package:gasna_driver/screens/StartPage.dart';
-import 'package:gasna_driver/screens/registration.dart';
 import 'package:gasna_driver/widgets/GradientButton.dart';
 import 'package:gasna_driver/widgets/ProgressDialog.dart';
 
@@ -66,7 +65,8 @@ class _LoginPageState extends State<LoginPage> {
           FirebaseDatabase.instance.reference().child('drivers/${user.uid}');
       userRef.once().then((DataSnapshot snapshot) {
         if (snapshot.value != null) {
-          Navigator.pushNamedAndRemoveUntil(context, StartPage.id, (route) => false);
+          Navigator.pushNamedAndRemoveUntil(
+              context, StartPage.id, (route) => false);
         }
       });
     }
@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                       fontFamily: 'Kharabeesh',
                       fontSize: 50,
-                      color: BrandColors.colorAccent),
+                      color: BrandColors.colorAccent1),
                 ),
                 Padding(
                   padding: EdgeInsets.all(20.0),
@@ -137,7 +137,6 @@ class _LoginPageState extends State<LoginPage> {
                         title: 'دخول',
                         onPressed: () async {
                           //check network availability
-
                           var connectivityResult =
                               await Connectivity().checkConnectivity();
                           if (connectivityResult != ConnectivityResult.mobile &&
@@ -145,17 +144,14 @@ class _LoginPageState extends State<LoginPage> {
                             showSnackBar('No internet connectivity');
                             return;
                           }
-
                           if (!emailController.text.contains('@')) {
                             showSnackBar('Please enter a valid email address');
                             return;
                           }
-
                           if (passwordController.text.length < 8) {
                             showSnackBar('Please enter a valid password');
                             return;
                           }
-
                           login();
                         },
                       ),
@@ -169,21 +165,23 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: Text(
                     'نسيت الرقم السري',
-                    style: TextStyle(color: Colors.black, ),
-                    
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-                TextButton(
+                /*TextButton(
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(
                         context, RegistrationPage.id, (route) => false);
                   },
                   child: Text(
                     'لا تمتلك حساب، انشيء حساب جديد',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                      color: BrandColors.colorAccent1,
+                    ),
                   ),
-                ),
-                
+                ),*/
               ],
             ),
           ),

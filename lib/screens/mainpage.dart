@@ -1,6 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:gasna_driver/datamodels/PromoCode.dart';
+import 'package:gasna_driver/helpers/helpermethods.dart';
+import 'package:gasna_driver/helpers/pushnotificationservice.dart';
 import 'package:gasna_driver/tabs/earningstab.dart';
 import 'package:gasna_driver/tabs/hometab.dart';
 import 'package:gasna_driver/tabs/profiletab.dart';
@@ -24,9 +26,19 @@ class _MainPageState extends State<MainPage>
     });
   }
 
+  void notification() {
+    PushNotificationService pushNotificationService = PushNotificationService();
+
+    pushNotificationService.initialize(context);
+    pushNotificationService.getToken();
+
+    HelperMethods.getHistoryInfo(context);
+  }
+
   @override
   void initState() {
     super.initState();
+    notification();
     tabController = TabController(length: 4, vsync: this);
   }
 
@@ -55,8 +67,6 @@ class _MainPageState extends State<MainPage>
       }
     });
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
