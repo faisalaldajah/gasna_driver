@@ -27,6 +27,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   var phoneController = TextEditingController();
 
+  var  majorGeneral = TextEditingController();
+
   var emailController = TextEditingController();
 
   var passwordController = TextEditingController();
@@ -41,7 +43,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
   var storage = FirebaseStorage.instance;
   File _imageId;
   File _ImageDefenseCard;
-  List<File> _imageList = [];
   var url;
   Future getImageFromCamera() async {
     final pickedFile = await ImagePicker.pickImage(
@@ -66,14 +67,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
     }
   }
 
-  Future getImageImageFromGallery() async {
+  Future getImageFromGallery() async {
     final pickedFile = await ImagePicker.pickImage(
         source: ImageSource.gallery, imageQuality: 50);
 
     setState(() {
       if (pickedFile != null) {
         _imageId = File(pickedFile.path);
-        _imageList.add(_imageId);
+        //_imageList.add(_imageId);
       } else {
         print('No image selected.');
       }
@@ -317,6 +318,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                           ],
                         ),
+                      ),
+                      SizedBox(height: 10),
+                      TextField(
+                        controller: majorGeneral,
+                        decoration: InputDecoration(
+                            labelText: 'اللواء',
+                            labelStyle: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10.0)),
+                        style: TextStyle(fontSize: 14),
                       ),
                       SizedBox(
                         height: 10,

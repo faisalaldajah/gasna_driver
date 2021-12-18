@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:gasna_driver/Admin/Screens/AdminLogin.dart';
+import 'package:gasna_driver/Admin/Screens/AdminMainPage.dart';
+import 'package:gasna_driver/Admin/Screens/ReportPage.dart';
+import 'package:gasna_driver/Admin/Screens/registration.dart';
 import 'package:gasna_driver/dataprovider.dart';
 import 'package:gasna_driver/globalvariabels.dart';
 import 'package:gasna_driver/screens/StartPage.dart';
@@ -30,8 +34,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute:
-            (currentFirebaseUser == null) ? LoginPage.id : StartPage.id,
+        initialRoute: RegistrationPage.id,
+        // (currentFirebaseUser == null) ? LoginPage.id : StartPage.id,
         //
         //RegistrationPage.id,
         routes: {
@@ -39,6 +43,10 @@ class MyApp extends StatelessWidget {
           RegistrationPage.id: (context) => RegistrationPage(),
           StartPage.id: (context) => StartPage(),
           LoginPage.id: (context) => LoginPage(),
+          AdminMainPage.id: (context) => AdminMainPage(),
+          AdminRegistrationPage.id: (context) => AdminRegistrationPage(),
+          AdminLoginPage.id: (context) => AdminLoginPage(),
+          AdminReportPage.id: (context) => AdminReportPage(),
         },
       ),
     );
