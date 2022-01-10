@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gasna_driver/brand_colors.dart';
 import 'package:gasna_driver/screens/StartPage.dart';
+import 'package:gasna_driver/widgets/CustomizedTextField.dart';
 import 'package:gasna_driver/widgets/GradientButton.dart';
 import 'package:gasna_driver/widgets/ProgressDialog.dart';
 
@@ -86,49 +88,49 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 30,
                 ),
-                Image(
-                  alignment: Alignment.center,
-                  height: 150.0,
-                  width: 150.0,
-                  image: AssetImage('images/gasna.png'),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image(
+                        alignment: Alignment.center,
+                        height: 50.0,
+                        width: 50.0,
+                        image: AssetImage('images/gasna.png'),
+                      ),
+                      SizedBox(width: 15),
+                      Text(
+                        'غازنا',
+                        style: TextStyle(
+                          color: BrandColors.colorAccent,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                Text(
-                  'غازنا',
-                  style: TextStyle(
-                      fontFamily: 'Kharabeesh',
-                      fontSize: 50,
-                      color: BrandColors.colorAccent1),
+                SizedBox(height: 40),
+                SvgPicture.asset(
+                  'images/undraw_access_account_re_8spm.svg',
+                  width: MediaQuery.of(context).size.width * 0.7,
                 ),
+                SizedBox(height: 50),
                 Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Column(
                     children: <Widget>[
-                      TextField(
+                      CustomizedTextField(
                         controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                            labelText: 'الايميل',
-                            labelStyle: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 10.0)),
-                        style: TextStyle(fontSize: 14),
+                        hint: 'الايميل',
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      TextField(
+                      CustomizedTextField(
                         controller: passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            labelText: 'رقم السري',
-                            labelStyle: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 10.0)),
-                        style: TextStyle(fontSize: 14),
+                        hint: 'الرقم السري',
                       ),
                       SizedBox(
                         height: 40,
@@ -159,10 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
-                    /*Navigator.pushNamedAndRemoveUntil(
-                        context, RegistrationPage.id, (route) => false);*/
-                  },
+                  onPressed: () {},
                   child: Text(
                     'نسيت الرقم السري',
                     style: TextStyle(
@@ -170,18 +169,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                /*TextButton(
-                  onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, RegistrationPage.id, (route) => false);
-                  },
-                  child: Text(
-                    'لا تمتلك حساب، انشيء حساب جديد',
-                    style: TextStyle(
-                      color: BrandColors.colorAccent1,
-                    ),
-                  ),
-                ),*/
               ],
             ),
           ),

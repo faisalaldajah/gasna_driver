@@ -4,10 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:gasna_driver/datamodels/RegistrationData.dart';
 import 'package:gasna_driver/screens/DistributionPlace.dart';
-import 'package:gasna_driver/screens/StartPage.dart';
 import 'package:gasna_driver/widgets/GradientButton.dart';
 import 'package:gasna_driver/widgets/ProgressDialog.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,7 +25,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   var phoneController = TextEditingController();
 
-  var  majorGeneral = TextEditingController();
+  var majorGeneral = TextEditingController();
 
   var emailController = TextEditingController();
 
@@ -42,25 +40,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
   String title = 'التالي';
   var storage = FirebaseStorage.instance;
   File _imageId;
-  File _ImageDefenseCard;
+  File _imageDefenseCard;
   var url;
+
+///////////////////////////////////////////////////////////////////////////
   Future getImageFromCamera() async {
     final pickedFile = await ImagePicker.pickImage(
         source: ImageSource.camera, imageQuality: 50);
     setState(() {
       if (pickedFile != null) {
-        _ImageDefenseCard = File(pickedFile.path);
-        // _imageList.add(_imageId);
+        _imageDefenseCard = File(pickedFile.path);
       } else {
         print('No image selected.');
       }
     });
-    if (_ImageDefenseCard != null) {
+    if (_imageDefenseCard != null) {
       storage
           .ref()
           .child(
-              'drivers/${Uri.file(_ImageDefenseCard.path).pathSegments.last}.jpg')
-          .putFile(_ImageDefenseCard)
+              'drivers/${Uri.file(_imageDefenseCard.path).pathSegments.last}.jpg')
+          .putFile(_imageDefenseCard)
           .catchError((e) {
         print(e);
       });
@@ -120,7 +119,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       url = await storage
           .ref()
           .child(
-              'drivers/${Uri.file(_ImageDefenseCard.path).pathSegments.last}.jpg')
+              'drivers/${Uri.file(_imageDefenseCard.path).pathSegments.last}.jpg')
           .getDownloadURL()
           .catchError((e) {
         print(e);
@@ -161,7 +160,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         governorateController.clear();
         placeController.clear();
         phoneController.clear();
-        _ImageDefenseCard = null;
+        _imageDefenseCard = null;
       });
 
       //Take the user to the mainPage
@@ -183,11 +182,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
       );
     }
   }
-
+///////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -377,8 +375,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         height: 20,
                       ),
                       Container(
-                        child: (_ImageDefenseCard != null)
-                            ? Image.file(_ImageDefenseCard)
+                        child: (_imageDefenseCard != null)
+                            ? Image.file(_imageDefenseCard)
                             : Text(
                                 'قم بتصوير كرت الدفاع',
                                 style: TextStyle(color: Colors.black),

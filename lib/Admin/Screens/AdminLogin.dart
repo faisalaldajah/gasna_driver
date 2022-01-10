@@ -4,7 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gasna_driver/Admin/Screens/AdminMainPage.dart';
-import 'package:gasna_driver/Admin/Screens/registration.dart';
+import 'package:gasna_driver/Admin/Screens/AdminRegistration.dart';
 import 'package:gasna_driver/brand_colors.dart';
 import 'package:gasna_driver/widgets/GradientButton.dart';
 import 'package:gasna_driver/widgets/ProgressDialog.dart';
@@ -91,7 +91,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                   alignment: Alignment.center,
                   height: 150.0,
                   width: 150.0,
-                  image: AssetImage('images/logo.png'),
+                  image: AssetImage('images/gasna.png'),
                 ),
                 Text(
                   'غازنا',

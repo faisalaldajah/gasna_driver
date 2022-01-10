@@ -61,9 +61,6 @@ class _AdminRegistrationPageState extends State<AdminRegistrationPage> {
         'fullname': fullNameController.text,
         'email': emailController.text,
         'phone': phoneController.text,
-        'distributionplace':placeController.text,
-        'socialAgentNumber':socialAgentNumberController.text,
-        'agentname':agentNameController.text
       };
 
       newUserRef.set(userMap);
@@ -88,9 +85,9 @@ class _AdminRegistrationPageState extends State<AdminRegistrationPage> {
               children: <Widget>[
                 Image(
                   alignment: Alignment.center,
-                  height: 280.0,
-                  width: 280.0,
-                  image: AssetImage('images/task.png'),
+                  height: 180.0,
+                  width: 180.0,
+                  image: AssetImage('images/gasna.png'),
                 ),
                 Padding(
                   padding: EdgeInsets.all(20.0),
@@ -163,73 +160,7 @@ class _AdminRegistrationPageState extends State<AdminRegistrationPage> {
                                 TextStyle(color: Colors.grey, fontSize: 10.0)),
                         style: TextStyle(fontSize: 14),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-
-                      TextField(
-                        controller: agentNameController,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            labelText: 'نوع السيارة',
-                            labelStyle: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 10.0)),
-                        style: TextStyle(fontSize: 14),
-                      ),
-
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        controller: placeController,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            labelText: 'مكان التوصيل',
-                            labelStyle: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 10.0)),
-                        style: TextStyle(fontSize: 14),
-                      ),
-
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        controller: socialAgentNumberController,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            labelText: 'رقم الوطني',
-                            labelStyle: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 10.0)),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        controller: socialAgentNumberController,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            labelText: 'رقم السيارة',
-                            labelStyle: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 10.0)),
-                        style: TextStyle(fontSize: 14),
-                      ),
-
-                      SizedBox(
-                        height: 40,
-                      ),
+                      SizedBox(height: 30),
                       GradientButton(
                         title: 'تسجيل',
                         onPressed: () async {

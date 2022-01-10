@@ -1,11 +1,10 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:gasna_driver/Admin/Model/AmountData.dart';
-import 'package:gasna_driver/Admin/Model/UserData.dart';
 import 'package:gasna_driver/Admin/Screens/AdminPakages.dart';
 import 'package:gasna_driver/Admin/Screens/ReportPage.dart';
-import 'package:gasna_driver/Admin/Screens/registration.dart';
 import 'package:gasna_driver/brand_colors.dart';
+import 'package:gasna_driver/screens/registration.dart';
 
 class AdminMainPage extends StatefulWidget {
   static const String id = 'adminmainpage';
@@ -15,8 +14,7 @@ class AdminMainPage extends StatefulWidget {
 }
 
 class _AdminMainPageState extends State<AdminMainPage> {
-  List<AdminDriverData> driverdata = [];
-  List<AdminUserData> userData = [];
+  List<AdminDriverData> driversDataInfo = [];
   @override
   void initState() {
     super.initState();
@@ -54,7 +52,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
             child: Center(
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AdminRegistrationPage.id);
+                  Navigator.pushNamed(context, RegistrationPage.id);
                 },
                 child: Text(
                   'إضافة سائق',
@@ -76,12 +74,13 @@ class _AdminMainPageState extends State<AdminMainPage> {
               child: TextButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AdminReportPage(
-                                driverData: driverdata,
-                                userData: userData,
-                              )));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AdminReportPage(
+                        driversDataInfo: driversDataInfo,
+                      ),
+                    ),
+                  );
                 },
                 child: Text(
                   'التقارير',
@@ -105,7 +104,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AdminPakages(driverdata)));
+                          builder: (context) => AdminPakages(driversDataInfo)));
                 },
                 child: Text(
                   'الحزم',
@@ -119,14 +118,11 @@ class _AdminMainPageState extends State<AdminMainPage> {
     );
   }
 
-  Future<void> getData() {
+  void getData() {
     DatabaseReference driverRef =
         FirebaseDatabase.instance.reference().child('drivers');
-    DatabaseReference userRef =
-        FirebaseDatabase.instance.reference().child('users');
     var keys;
     AdminDriverData dirver;
-    AdminUserData user;
     driverRef.once().then((DataSnapshot snapshot) {
       keys = snapshot.value.keys;
       for (var key in keys) {
@@ -134,23 +130,21 @@ class _AdminMainPageState extends State<AdminMainPage> {
           amount: snapshot.value[key]['amount']['amount'],
           status: snapshot.value[key]['amount']['status'],
           transNumber: snapshot.value[key]['amount']['transNumber'],
-          name: snapshot.value[key]['fullname'],
-          number: snapshot.value[key]['phone'],
-          storeKey: key,
-        );
-
-        driverdata.add(dirver);
-      }
-    });
-    userRef.once().then((DataSnapshot snapshot) {
-      keys = snapshot.value.keys;
-      for (var key in keys) {
-        user = AdminUserData(
-          name: snapshot.value[key]['fullname'],
+          fullName: snapshot.value[key]['fullname'],
           phone: snapshot.value[key]['phone'],
+          agentName: snapshot.value[key]['agentName'],
+          currentAmount: snapshot.value[key]['currentAmount'],
+          driverType: snapshot.value[key]['driverType'],
+          driversIsAvailable: snapshot.value[key]['driversIsAvailable'],
+          email: snapshot.value[key]['email'],
+          governorate: snapshot.value[key]['governorate'],
+          place: snapshot.value[key]['place'],
           storeKey: key,
         );
-        userData.add(user);
+        //print(dirver.fullName);
+        setState(() {
+          driversDataInfo.add(dirver);
+        });
       }
     });
   }

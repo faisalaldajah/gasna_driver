@@ -66,14 +66,13 @@ DatabaseReference tripRequestRef = FirebaseDatabase.instance
 
 // ignore: non_constant_identifier_names
 void GoOnline() {
-  Geofire.initialize(
-      'driversAvailable/${currentDriverInfo.governorate}/${currentDriverInfo.driverType}');
+  Geofire.initialize('driversAvailable');
   Geofire.setLocation(currentFirebaseUser.uid, currentPosition.latitude,
       currentPosition.longitude);
 
   tripRequestRef.set('waiting');
 
-  tripRequestRef.onValue.listen((event) {});
+  //tripRequestRef.onValue.listen((event) {});
 }
 
 // ignore: non_constant_identifier_names

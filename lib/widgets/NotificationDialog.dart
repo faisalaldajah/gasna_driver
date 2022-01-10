@@ -37,7 +37,7 @@ class NotificationDialog extends StatelessWidget {
               height: 30.0,
             ),
             Image.asset(
-              'images/taxi.png',
+              'images/mini-truck.png',
               width: 100,
             ),
             SizedBox(
@@ -45,7 +45,7 @@ class NotificationDialog extends StatelessWidget {
             ),
             Text(
               'لديك طلب جديد',
-              style: TextStyle( fontSize: 18),
+              style: TextStyle(fontSize: 18),
             ),
             SizedBox(
               height: 30.0,
@@ -66,11 +66,13 @@ class NotificationDialog extends StatelessWidget {
                         width: 18,
                       ),
                       Expanded(
-                          child: Container(
-                              child: Text(
-                        tripDetails.pickupAddress,
-                        style: TextStyle(fontSize: 18),
-                      )))
+                        child: Container(
+                          child: Text(
+                            tripDetails.pickupAddress,
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   SizedBox(
@@ -122,9 +124,7 @@ class NotificationDialog extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  SizedBox(width: 10),
                   Expanded(
                     child: Container(
                       child: TaxiButton(

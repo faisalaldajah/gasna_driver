@@ -27,7 +27,7 @@ class _AdminPakagesState extends State<AdminPakages> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(
-              '${widget.driverData[index].name}---${widget.driverData[index].number}',
+              '${widget.driverData[index].fullName}---${widget.driverData[index].phone}',
             ),
             subtitle: Text(widget.driverData[index].transNumber),
             isThreeLine: true,
@@ -41,7 +41,7 @@ class _AdminPakagesState extends State<AdminPakages> {
     );
   }
 
-  Future<void> approve(String key, BuildContext context, int index) {
+  Future<void> approve(String key, BuildContext context, int index) async {
     showDialog(
       barrierDismissible: false,
       context: context,
