@@ -16,15 +16,16 @@ class _GradientButtonState extends State<GradientButton> {
   Widget build(BuildContext context) {
     return Container(
       width: 300,
-      height: 60,
+      height: 50,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(25),
         gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
             colors: [
               BrandColors.colorAccent,
               BrandColors.colorAccent1,
+              BrandColors.colorAccent,
             ]),
         boxShadow: [
           BoxShadow(
@@ -38,7 +39,7 @@ class _GradientButtonState extends State<GradientButton> {
         onPressed: widget.onPressed,
         child: Text(
           widget.title,
-          style: TextStyle(fontSize: 25,color: Colors.white),
+          style: TextStyle(fontSize: 25, color: Colors.white),
         ),
       ),
     );

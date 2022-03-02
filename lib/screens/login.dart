@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gasna_driver/brand_colors.dart';
 import 'package:gasna_driver/screens/StartPage.dart';
+import 'package:gasna_driver/screens/registration.dart';
 import 'package:gasna_driver/widgets/CustomizedTextField.dart';
 import 'package:gasna_driver/widgets/GradientButton.dart';
 import 'package:gasna_driver/widgets/ProgressDialog.dart';
@@ -57,7 +58,8 @@ class _LoginPageState extends State<LoginPage> {
       //check error and display message
       Navigator.pop(context);
       PlatformException thisEx = ex;
-      showSnackBar(thisEx.message);
+      print(thisEx.message);
+      // showSnackBar(thisEx.message);
     }))
         .user;
 
@@ -122,15 +124,16 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: <Widget>[
                       CustomizedTextField(
-                        controller: emailController,
-                        hint: 'الايميل',
-                      ),
+                          controller: emailController,
+                          hint: 'الايميل',
+                          obscureText: false),
                       SizedBox(
                         height: 10,
                       ),
                       CustomizedTextField(
                         controller: passwordController,
                         hint: 'الرقم السري',
+                        obscureText: true,
                       ),
                       SizedBox(
                         height: 40,
@@ -161,7 +164,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigator.pushNamed(context, RegistrationPage.id);
+                  },
                   child: Text(
                     'نسيت الرقم السري',
                     style: TextStyle(

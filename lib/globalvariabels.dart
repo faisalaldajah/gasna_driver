@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ StreamSubscription<Position> homeTabPositionStream;
 
 StreamSubscription<Position> ridePositionStream;
 
-final assetsAudioPlayer = AssetsAudioPlayer();
 
 Position currentPosition;
 

@@ -7,6 +7,12 @@
         "DuplicateNumberLiteral": {
             "enabled": false
         },
+        "DuplicateStringLiteral": {
+            "enabled": false
+        },
+        "Indentation": {
+            "enabled": false
+        },
         "LineLength": {
             "enabled": false
         },

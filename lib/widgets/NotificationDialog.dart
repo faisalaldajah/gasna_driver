@@ -118,7 +118,6 @@ class NotificationDialog extends StatelessWidget {
                         title: 'رفض',
                         color: BrandColors.colorPrimary,
                         onPressed: () async {
-                          assetsAudioPlayer.stop();
                           Navigator.pop(context);
                         },
                       ),
@@ -131,7 +130,6 @@ class NotificationDialog extends StatelessWidget {
                         title: 'قبول',
                         color: BrandColors.colorGreen,
                         onPressed: () async {
-                          assetsAudioPlayer.stop();
                           checkAvailablity(context);
                         },
                       ),

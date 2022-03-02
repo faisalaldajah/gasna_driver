@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gasna_driver/datamodels/RegistrationData.dart';
 import 'package:gasna_driver/screens/DistributionPlace.dart';
 import 'package:gasna_driver/widgets/GradientButton.dart';
@@ -107,10 +108,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
             .catchError((ex) {
       //check error and display message
       Navigator.pop(context);
-      showSnackBar('تحقق من الاسم او الرقم السري');
+      PlatformException thisEx = ex;
+      //showSnackBar(thisEx.message);
     }))
         .user;
-
+    print(user.uid);
     Navigator.pop(context);
     // check if user registration is successful
     if (user != null) {
@@ -182,6 +184,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       );
     }
   }
+
 ///////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
